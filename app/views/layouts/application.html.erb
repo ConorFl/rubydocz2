@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ParsingProject</title>
+	<!-- <meta name="viewport" content	="width=device-width, initial-scale=1.0"> -->
+	<%= stylesheet_link_tag    "application", :media => "all" %>
+	<%= javascript_include_tag "application" %>
+	<%= csrf_meta_tags %>
+	<!-- // <script src="http://code.jquery.com/jquery-1.8.3.js"></script> -->
+<!-- 	// <script src="http://code.jquery.com/ui/1.9.2/jquery-ui.js"></script> -->
+</head>
+<body>
+
+	<div class="navbar navbar-fixed-top">
+		<div class="navbar-inner navbar-form">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span2"><a href='/' class="pull-right" style="margin-top: 8px"><img src="/assets/ruby.png" style="max-width: 20px;"></a></div>
+					<!-- <a href="/" class="brand">Ruby Cheetsheet</a> -->
+					<div class="span8">
+						<input type="text" id="method_search" style="width: 100%" placeholder="Try 'array#join' or just 'join'">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br><br><br>
+	<div class="container">
+		<div class="row-fluid">
+			<%= yield %>
+			<div class = "span2">
+				<h3>Classes</h3>
+				<% @parsed.each do |rclass| %>
+				<p><a href="/	parsed/<%=rclass.name%>"><%= rclass.name %></a></p>
+				<% end %>
+			</div>
+		</div>
+	</div>
+	<script>
+	$('#class_url').val( $('.unparsed').find('p').first().text()+'.html' )
+// $('#class_url').submit()
+$('.unparsed').on('click','p',function(){
+	$('#class_url').val($(this).text()+".html")
+})
+// $("#customer-search").autocomplete({
+// 	source: [
+// 	{'label':'hi','value':'bye'},
+// 	{'label':'hola','value':'adios'}
+// 	],
+// 	select: function(event, ui) {
+// 		event.preventDefault();
+// 		$("#customer-search").val(ui.item.label);
+// 		$("#selected-customer").html(ui.item.value);
+// 	},
+// 	focus: function(event, ui) {
+// 		event.preventDefault();
+// 		$("#customer-search").val(ui.item.label);
+// 	}
+// });
+$(function() {
+	// var data = [
+	// {"label":"Aragorn", "actor":"Viggo Mortensen"},
+	// {"label":"Arwen", "actor":"Liv Tyler"},
+	// {"label":"Bilbo Baggins", "actor":"Ian Holm"},
+	// {"label":"Boromir", "actor":"Sean Bean"},
+	// {"label":"Frodo Baggins", "actor":"Elijah Wood"},
+	// {"label":"Gandalf", "actor":"Ian McKellen"},
+	// {"label":"Gimli", "actor":"John Rhys-Davies"},
+	// {"label":"Gollum", "actor":"Andy Serkis"},
+	// {"label":"Legolas", "actor":"Orlando Bloom"},
+	// {"label":"Meriadoc Merry Brandybuck", "actor":"Dominic Monaghan"},
+	// {"label":"Peregrin Pippin Took", "actor":"Billy Boyd"},
+	// {"label":"Samwise Gamgee", "actor":"Sean Astin"}
+	// ];
+
+	$( "#method_search" ).autocomplete(
+	{
+	// source: '/data',
+	source: function( request, response ) {
+		$.ajax({
+			url: "/data",
+			dataType: "json",
+			data: {
+				maxRows: 20,
+				name_startsWith: request.term
+			},
+			success: function( data ) {
+				response( $.map( data, function( item ) {
+					return {
+						label: item.name,
+						extra: item.label
+					}
+				}));
+			}
+		});
+	},
+	select: function( event, ui ) {
+		$( "#method_search" ).val( ui.item.label + " / " + ui.item.actor );
+		// console.log()
+		return false;
+	}
+}).data( "autocomplete" )._renderItem = function( ul, item ) {
+$('.ui-autocomplete').addClass("span8");
+		return $( "<li></li>" )
+		.data( "item.autocomplete", item )
+		.append( "<a>" + item.label + 
+			(item.extra != null ? "<div style='color: grey;'> "+item.extra + "</div></a>" : "</a>") )
+		.appendTo( ul );
+	};    
+	$('#method_search').focus();
+});
+
+</script>
+
+</body>
+</html>
