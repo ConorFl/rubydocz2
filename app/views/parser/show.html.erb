@@ -6,7 +6,7 @@
 	<a href="#"><%= x.name[(x.name.index("#")+1)..(end_index -2) ] %></a><br>
 	<% end %>
 </div>
-<div class="span8">
+<div class="span8 main_col">
 	<legend><h2><%= @rclass.name %></h2></legend>
 	<% @rclass.rmethods.each do |rmethod| %>
 	<p><%= rmethod.name %>

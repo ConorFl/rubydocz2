@@ -31,7 +31,7 @@
 			<div class = "span2">
 				<h3>Classes</h3>
 				<% @parsed.each do |rclass| %>
-				<p><a href="/	parsed/<%=rclass.name%>"><%= rclass.name %></a></p>
+				<a href="/parsed/<%=rclass.name%>"><%= rclass.name %></a><br>
 				<% end %>
 			</div>
 		</div>
@@ -95,7 +95,8 @@ $(function() {
 		});
 	},
 	select: function( event, ui ) {
-		$( "#method_search" ).val( ui.item.label + " / " + ui.item.actor );
+		// console.log(ui.item.label.class)
+		window.location.href = "/parsed/"+ui.item.label
 		// console.log()
 		return false;
 	}
@@ -109,7 +110,7 @@ $('.ui-autocomplete').addClass("span8");
 	};    
 	$('#method_search').focus();
 });
-
+app
 </script>
 
 </body>

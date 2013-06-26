@@ -8,15 +8,19 @@ class ParserController < ApplicationController
 		@questionable = []
 		@rclasses = Rclass.all
 		@rclasses.each do |rclass|
-			puts "#{rclass.name}: #{rclass.id}"
-			puts Rmethod.where('rclass_id = ? AND label IS NOT NULL',rclass.id).inspect
-			if Rmethod.where('rclass_id = ? AND label IS NOT NULL',rclass.id) != []
-				@parsed << rclass
-			elsif rclass.name.index('::')
-				@questionable << rclass
-			else
-				@unparsed << rclass
-			end
+			# puts "#{rclass.name}: #{rclass.id}"
+			# puts Rmethod.where('rclass_id = ? AND label IS NOT NULL',rclass.id).inspect
+			#THIS ISNT WORKING FOR SOME REASON (below)
+			@parsed = Rclass.where("name not like ?", "%::%")
+			# if rclass.name.index('::')
+			# 	@questionable << rclass
+			# 	puts "#{rclass.name} is questionable"
+			# elsif Rmethod.where('rclass_id = ? AND label IS NOT NULL',rclass.id) != []
+			# 	puts "#{rclass.name} has been parsed"
+			# 	@parsed << rclass
+			# else
+			# 	@unparsed << rclass
+			# end
 		end
 	end
 
@@ -80,7 +84,7 @@ class ParserController < ApplicationController
 	end
 	def show
 		@rclass = Rclass.find_by_name(params[:name])
-		@parsed = Rclass.all
+		@parsed = Rclass.where("name not like ?", "%::%")
 	end
 	def data
 		# @lotr = [
