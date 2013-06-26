@@ -1,3 +1,5 @@
-== Ruby Docz
+== Ruby Docz 2
 
 Small toy I built to play around with Nokogiri and JQuery UI (autocomplete), along with having and easier way to reference Ruby Docs.  Going live on Heroku shortly.
+
+-Conor
