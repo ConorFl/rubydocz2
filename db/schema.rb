@@ -14,18 +14,18 @@
 ActiveRecord::Schema.define(:version => 20130624065934) do
 
   create_table "rclasses", :force => true do |t|
-    t.string   "name"
+    t.text     "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
 
   create_table "rmethods", :force => true do |t|
-    t.string   "name"
+    t.text     "name"
     t.integer  "rclass_id"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
-    t.string   "label"
-    t.string   "code"
+    t.text     "label"
+    t.text     "code"
   end
 
 end

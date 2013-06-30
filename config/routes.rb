@@ -6,6 +6,7 @@ ParsingProject::Application.routes.draw do
   match '/label' => 'parser#parse_label'
   match '/parsed/:name' => 'parser#show'
   match '/data' => 'parser#data'
+  match '/ohno' => 'parser#ohno'
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action

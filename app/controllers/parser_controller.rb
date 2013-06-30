@@ -23,7 +23,14 @@ class ParserController < ApplicationController
 			# end
 		end
 	end
+	def ohno
+		log = YAML.load_file( "data.yml")
+		log["rclasses"]["records"].each do |x|
+			puts x[1]
+		end
+		redirect_to '/'
 
+	end
 	def parse
 		@rclass = Rclass.find_by_name(params[:class_url][0..-6])
 		unless @rclass

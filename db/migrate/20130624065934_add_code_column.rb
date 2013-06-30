@@ -1,6 +1,6 @@
 class AddCodeColumn < ActiveRecord::Migration
   def up
-  	add_column :rmethods, :code, :string
+  	add_column :rmethods, :code, :text
   end
 
   def down
