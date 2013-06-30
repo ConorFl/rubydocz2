@@ -3,13 +3,13 @@
 	<% @rclass.rmethods.each do |x| %>
 	<% end_index = x.name.index("=>") %>
 	<% end_index = 30 unless end_index %>
-	<a href="#<%=x.name[x.name.index('#'),100]%>"><%= x.name[(x.name.index("#")+1)..(end_index -2) ] %></a><br>
+	<a href="#<%=x.name[x.name.index('#')+1,100]%>"><%= x.name[(x.name.index("#")+1)..(end_index -2) ] %></a><br>
 	<% end %>
 </div>
 <div class="span8 main_col">
 	<legend><h2><%= @rclass.name %></h2></legend>
 	<% @rclass.rmethods.each do |rmethod| %>
-	<a name='<%= rmethod.name[rmethod.name.index("#"),100]%>' style="padding-top: 40px; margin-top: -40px;"></a>
+	<a name='<%= rmethod.name[rmethod.name.index("#")+1,100]%>' style="padding-top: 40px; margin-top: -40px;"></a>
 	<p>
 		<%= rmethod.name %>
 	</p>
