@@ -109,7 +109,7 @@ class ParserController < ApplicationController
 		# 	{"label"=>"Samwise Gamgee", "actor"=>"Sean Astin"}
 		# ]
 		# @lotr.keep_if {|x| x['label'].downcase.index(params[:name_startsWith].downcase)}
-		@rmethods = Rmethod.where("name like ?", "%#{params[:name_startsWith]}%").limit(params[:maxRows]).select("name, rclass_id, label")
+		@rmethods = Rmethod.where("name ilike ?", "%#{params[:name_startsWith]}%").limit(params[:maxRows]).select("name, rclass_id, label")
 		puts "*******************SAMPLE of #{@rmethods.class} full of stuff #{@rmethods[0].class}"
 		puts Rmethod.find(3)['label']
 		puts @rmethods.inspect
