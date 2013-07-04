@@ -1,5 +1,9 @@
 == Ruby Docz 2
 
-Small toy I built to play around with Nokogiri and JQuery UI (autocomplete), along with having and easier way to reference Ruby Docs.  Going live on Heroku shortly.
+Small toy I built to play around with Nokogiri and JQuery UI (autocomplete), along with having and easier way to reference Ruby Docs.  Heroku: enigmatic-chamber-1400.herokuapp.com
+
+Future plans: 
+- Some data is bad due to inconsistencies of DOM structures on ruby-doc.org pages.  I'd like to clean this data up a bit. 
+- Optimize for mobile.
 
 -Conor
