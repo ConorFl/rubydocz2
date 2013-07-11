@@ -13,7 +13,7 @@
 
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner navbar-form">
-			<div class="container">
+			<div class="container-fluid">
 				<div class="row-fluid">
 					<div class="span2"><a href='/' class="pull-right" style="margin-top: 8px"><img src="/assets/ruby.png" style="max-width: 20px;"></a></div>
 					<!-- <a href="/" class="brand">Ruby Cheetsheet</a> -->
@@ -25,14 +25,16 @@
 		</div>
 	</div>
 	<br>
-	<div class="container">
+	<div class="container-fluid">
 		<div class="row-fluid">
 			<%= yield %>
 			<div class = "span2">
-				<h3>Classes</h3>
-				<% @parsed.each do |rclass| %>
-				<a href="/parsed/<%=rclass.name%>"><%= rclass.name %></a><br>
-				<% end %>
+				<div class = "fixed-sidebar">
+					<h3>Classes</h3>
+					<% @parsed.each do |rclass| %>
+					<a href="/parsed/<%=rclass.name%>"><%= rclass.name %></a><br>
+					<% end %>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -72,7 +74,16 @@ $(function() {
 	// {"label":"Peregrin Pippin Took", "actor":"Billy Boyd"},
 	// {"label":"Samwise Gamgee", "actor":"Sean Astin"}
 	// ];
+	window.onresize = function(event) {
+		resizeDiv();
+	}
 
+	function resizeDiv() {
+		vph = $(window).height() - 61; 		
+		vpw = $('.container-fluid').width() * .15
+		$('.fixed-sidebar').css({height: vph + 'px', width: vpw + 'px'});
+	}
+	resizeDiv();
 	$( "#method_search" ).autocomplete(
 	{
 	// source: '/data',
@@ -109,8 +120,8 @@ $(function() {
 		.appendTo( ul );
 	};    
 });
-$('#method_search').focus();
-</script>
+		$('#method_search').focus();
+		</script>
 
-</body>
-</html>
+	</body>
+	</html>

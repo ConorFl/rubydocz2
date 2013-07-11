@@ -24,3 +24,12 @@
 a {
 	font-size: 1em !important;
 }
+
+.fixed-sidebar {
+	position: fixed;
+	overflow: scroll;
+	overflow-x: hidden;
+}
+::-webkit-scrollbar { 
+    display: none; 
+}
